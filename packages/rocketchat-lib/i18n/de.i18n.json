@@ -918,6 +918,7 @@
   "Site_Url" : "Website-URL",
   "Site_Url_Description" : "Beispiel: https://chat.domain.com/",
   "Skip" : "Überspringen",
+  "Slash_Delete_Description" : "Löscht den aktuellen Raum.",
   "Slash_Shrug_Description" : "Zeigt ¯\\_(ツ)_/¯ am Ende der Nachricht",
   "Slash_Topic_Description" : "Thema setzen",
   "Slash_Topic_Params" : "Themennachricht",

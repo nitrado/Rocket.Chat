@@ -924,6 +924,7 @@
   "Site_Url" : "Site URL",
   "Site_Url_Description" : "Example: https://chat.domain.com/",
   "Skip" : "Skip",
+  "Slash_Delete_Description" : "Deletes the current room",
   "Slash_Shrug_Description" : "Displays ¯\\_(ツ)_/¯ after your message",
   "Slash_Topic_Description" : "Set topic",
   "Slash_Topic_Params" : "Topic message",
