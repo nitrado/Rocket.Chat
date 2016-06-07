@@ -27,7 +27,7 @@ Template.createChannelFlex.helpers
 					filter:
 						exceptions: [Meteor.user().username].concat(Template.instance().selectedUsers.get())
 					selector: (match) ->
-						return { username: match }
+						return { term: match }
 					sort: 'username'
 				}
 			]
@@ -104,6 +104,7 @@ Template.createChannelFlex.events
 				SideNav.closeFlex ->
 					instance.clearForm()
 
+				RocketChat.callbacks.run 'afterCreateChannel', { _id: result.rid, name: name }
 				FlowRouter.go 'channel', { name: name }
 		else
 			console.log err

@@ -15,6 +15,9 @@ RocketChat.models.Users = new class extends RocketChat.models._Base
 	findOneById: (_id, options) ->
 		return @findOne _id, options
 
+	findOneByImportId: (_id, options) ->
+		return @findOne { importIds: _id }, options
+
 	findOneByUsername: (username, options) ->
 		query =
 			username: username
@@ -84,16 +87,24 @@ RocketChat.models.Users = new class extends RocketChat.models._Base
 
 		return @find query, options
 
-	findActiveByUsernameRegexWithExceptions: (username, exceptions = [], options = {}) ->
+	findActiveByUsernameOrNameRegexWithExceptions: (searchTerm, exceptions = [], options = {}) ->
 		if not _.isArray exceptions
 			exceptions = [ exceptions ]
 
-		usernameRegex = new RegExp username, "i"
+		termRegex = new RegExp searchTerm, "i"
 		query =
 			$and: [
 				{ active: true }
-				{ username: { $nin: exceptions } }
-				{ username: usernameRegex }
+				{'$or': [
+					{'$and': [
+						{ username: { $nin: exceptions } }
+						{ username: termRegex }
+					]}
+					{'$and': [
+						{ name: { $nin: exceptions } }
+						{ name: termRegex }
+					]}
+				]}
 			]
 			type:
 				$in: ['user', 'bot']
